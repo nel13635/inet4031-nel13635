@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  FLASK_SECRET_KEY: 081b9d1932ab4027979bc23beaa587ac
+  HOST_PORT: "8080"
+  POSTGRES_DB: incidents
+  POSTGRES_PASSWORD: 36c7720e192676fe3466034952b37ec5
+  POSTGRES_USER: incident_app
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: web-env
+  name: env
