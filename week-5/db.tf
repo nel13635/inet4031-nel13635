@@ -93,7 +93,7 @@ resource "kubernetes_deployment_v1" "db" {
         }
 
         volume {
-          name = "db-data"
+          name = "db-data-v2"
 
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim_v1.db_data.metadata[0].name
