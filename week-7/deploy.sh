@@ -89,24 +89,6 @@ fi
 
 log "deploying ${NEW:0:7}"
 
-log "step 1 of 2: tofu apply in week-5"
-(cd week-5 && tofu init -input=false && tofu apply -auto-approve -input=false -lock-timeout=60s)
-
-log "step 2 of 2: helm upgrade for prometheus"
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts --force-update
-helm repo update prometheus-community
-helm upgrade --install prometheus prometheus-community/prometheus \
-  --version 29.35.0 \
-  --namespace monitoring \
-  --create-namespace \
-  --values week-6/prometheus-values.yaml \
-  --wait \
-  --rollback-on-failure \
-  --timeout 5m
-
-echo "$NEW" > "$STATE"
-log "deploying ${NEW:0:7}"
-
 # Files created from here on, including the saved plan, are private to you.
 umask 077
 PLAN="$HOME/.deploy.tfplan"
