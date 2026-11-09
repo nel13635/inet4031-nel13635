@@ -19,7 +19,7 @@ resource "kubernetes_persistent_volume_claim_v1" "db_data" {
 
 resource "kubernetes_deployment_v1" "db" {
   metadata {
-    name   = "db-db_data"
+    name   = "db-data-v2"
     labels = { app = "db" }
   }
 
