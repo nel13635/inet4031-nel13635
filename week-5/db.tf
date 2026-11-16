@@ -19,7 +19,7 @@ resource "kubernetes_persistent_volume_claim_v1" "db_data" {
 
 resource "kubernetes_deployment_v1" "db" {
   metadata {
-    name   = "db-db-data"
+    name   = "db-data-v2"
     labels = { app = "db" }
   }
 
@@ -43,6 +43,7 @@ resource "kubernetes_deployment_v1" "db" {
         container {
           name  = "db"
           image = "postgres:16"
+          args  = ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
 
           port {
             container_port = 5432
