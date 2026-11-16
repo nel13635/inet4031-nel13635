@@ -25,7 +25,7 @@ resource "kubernetes_deployment_v1" "web" {
 
         container {
           name              = "web"
-          image             = "docker.io/library/week-4-web:latest"
+          image             = "docker.io/library/week-4-web:v2"
           image_pull_policy = "IfNotPresent"
 
           port {
@@ -81,7 +81,7 @@ resource "kubernetes_deployment_v1" "web" {
 
           readiness_probe {
             exec {
-              command = ["python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000')"]
+             command = ["python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000')"]
             }
 
             initial_delay_seconds = 5
